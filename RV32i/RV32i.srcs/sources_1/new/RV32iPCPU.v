@@ -86,6 +86,10 @@ module RV32iPCPU(
     wire [4:0] ID_EXE_read_reg2;
     
     wire [31:0] ID_EXE_ALU_out;
+    
+    wire [31:0] ALU_A_out;
+    wire [31:0] ALU_B_out;
+    
 
     // EXE_MEM
     wire [31:0] EXE_MEM_inst_in;
@@ -342,10 +346,28 @@ module RV32iPCPU(
     //   7. PC
     // Out:
     //   None
+    forwarding_unit _forwarding_unit_ (
+        .ID_EXE_read_reg1(ID_EXE_read_reg1),
+        .ID_EXE_read_reg2(ID_EXE_read_reg2),
+        .ID_EXE_ALU_A(ID_EXE_ALU_A),
+        .ID_EXE_ALU_B(ID_EXE_ALU_B), 
+        
+        .EXE_MEM_RegWrite(EXE_MEM_RegWrite),
+        .EXE_MEM_written_reg(EXE_MEM_written_reg),
+        .EXE_MEM_ALU_out(EXE_MEM_ALU_out),
+        
+        .MEM_WB_RegWrite(MEM_WB_RegWrite),
+        .MEM_WB_written_reg(Wt_addr),
+        .MEM_WB_reg_Wt_data(Wt_data),
+        
+        .ALU_A_out(ALU_A_out),
+        .ALU_B_out(ALU_B_out)
+    );
+
 
     ALU _alualu_ (
-        .A(ID_EXE_ALU_A[31:0]),
-        .B(ID_EXE_ALU_B[31:0]),
+        .A(ALU_A_out[31:0]),
+        .B(ALU_B_out[31:0]),
         .ALU_operation(ID_EXE_ALU_Control[4:0]),
         .res(ID_EXE_ALU_out[31:0]),
         .overflow(),
