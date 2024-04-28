@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="8 ps"></ZoomStartTime>
-      <ZoomEndTime time="23 ps"></ZoomEndTime>
-      <Cursor1Time time="20 ps"></Cursor1Time>
+      <ZoomStartTime time="0 ps"></ZoomStartTime>
+      <ZoomEndTime time="17 ps"></ZoomEndTime>
+      <Cursor1Time time="12 ps"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="305"></NameColumnWidth>
-      <ValueColumnWidth column_width="204"></ValueColumnWidth>
+      <ValueColumnWidth column_width="177"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="26" />
+   <WVObjectSize size="30" />
    <wvobject fp_name="/Top/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -35,6 +35,32 @@
    <wvobject fp_name="/Top/inst_in" type="array">
       <obj_property name="ElementShortName">inst_in[31:0]</obj_property>
       <obj_property name="ObjectShortName">inst_in[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_if_id_/IF_ID_inst_in" type="array">
+      <obj_property name="ElementShortName">IF_ID_inst_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">IF_ID_inst_in[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_id_exe_/ID_EXE_inst_in" type="array">
+      <obj_property name="ElementShortName">ID_EXE_inst_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EXE_inst_in[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_exe_mem_/EXE_MEM_inst_in" type="array">
+      <obj_property name="ElementShortName">EXE_MEM_inst_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">EXE_MEM_inst_in[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_mem_wb_/MEM_WB_inst_in" type="array">
+      <obj_property name="ElementShortName">MEM_WB_inst_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_WB_inst_in[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/Top/addr_out" type="array">
       <obj_property name="ElementShortName">addr_out[31:0]</obj_property>
@@ -216,60 +242,6 @@
          <obj_property name="ObjectShortName">MEM_WB_PC[31:0]</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/IF_ID_written_reg" type="array">
-      <obj_property name="ElementShortName">IF_ID_written_reg[4:0]</obj_property>
-      <obj_property name="ObjectShortName">IF_ID_written_reg[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/IF_ID_read_reg1" type="array">
-      <obj_property name="ElementShortName">IF_ID_read_reg1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">IF_ID_read_reg1[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/IF_ID_read_reg2" type="array">
-      <obj_property name="ElementShortName">IF_ID_read_reg2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">IF_ID_read_reg2[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/ID_EXE_written_reg" type="array">
-      <obj_property name="ElementShortName">ID_EXE_written_reg[4:0]</obj_property>
-      <obj_property name="ObjectShortName">ID_EXE_written_reg[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/ID_EXE_read_reg1" type="array">
-      <obj_property name="ElementShortName">ID_EXE_read_reg1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">ID_EXE_read_reg1[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/ID_EXE_read_reg2" type="array">
-      <obj_property name="ElementShortName">ID_EXE_read_reg2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">ID_EXE_read_reg2[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/EXE_MEM_written_reg" type="array">
-      <obj_property name="ElementShortName">EXE_MEM_written_reg[4:0]</obj_property>
-      <obj_property name="ObjectShortName">EXE_MEM_written_reg[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/EXE_MEM_read_reg1" type="array">
-      <obj_property name="ElementShortName">EXE_MEM_read_reg1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">EXE_MEM_read_reg1[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/EXE_MEM_read_reg2" type="array">
-      <obj_property name="ElementShortName">EXE_MEM_read_reg2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">EXE_MEM_read_reg2[4:0]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
    <wvobject fp_name="/Top/_rv32ipcpu_/_dstall_/PC_dstall" type="logic">
       <obj_property name="ElementShortName">PC_dstall</obj_property>
       <obj_property name="ObjectShortName">PC_dstall</obj_property>
@@ -303,5 +275,43 @@
    <wvobject fp_name="/Top/_rv32ipcpu_/_mem_wb_/MEM_WB_inst_in" type="array">
       <obj_property name="ElementShortName">MEM_WB_inst_in[31:0]</obj_property>
       <obj_property name="ObjectShortName">MEM_WB_inst_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/forwarding_flag_A" type="logic">
+      <obj_property name="ElementShortName">forwarding_flag_A</obj_property>
+      <obj_property name="ObjectShortName">forwarding_flag_A</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/forwarding_flag_B" type="logic">
+      <obj_property name="ElementShortName">forwarding_flag_B</obj_property>
+      <obj_property name="ObjectShortName">forwarding_flag_B</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/ID_EXE_read_reg2" type="array">
+      <obj_property name="ElementShortName">ID_EXE_read_reg2[4:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EXE_read_reg2[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/EXE_MEM_written_reg" type="array">
+      <obj_property name="ElementShortName">EXE_MEM_written_reg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">EXE_MEM_written_reg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/MEM_WB_written_reg" type="array">
+      <obj_property name="ElementShortName">MEM_WB_written_reg[4:0]</obj_property>
+      <obj_property name="ObjectShortName">MEM_WB_written_reg[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/ID_EXE_ALU_B" type="array">
+      <obj_property name="ElementShortName">ID_EXE_ALU_B[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ID_EXE_ALU_B[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/EXE_MEM_ALU_out" type="array">
+      <obj_property name="ElementShortName">EXE_MEM_ALU_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">EXE_MEM_ALU_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_forwarding_unit_/ALU_B_out" type="array">
+      <obj_property name="ElementShortName">ALU_B_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ALU_B_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Top/_rv32ipcpu_/_cstall_/IF_ID_cstall" type="logic">
+      <obj_property name="ElementShortName">IF_ID_cstall</obj_property>
+      <obj_property name="ObjectShortName">IF_ID_cstall</obj_property>
+      <obj_property name="CustomSignalColor">#FFA500</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
 </wave_config>

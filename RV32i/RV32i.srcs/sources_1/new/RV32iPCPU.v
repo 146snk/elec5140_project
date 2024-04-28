@@ -89,7 +89,7 @@ module RV32iPCPU(
     
     wire [31:0] ALU_A_out;
     wire [31:0] ALU_B_out;
-    
+    wire [31:0] EXE_Data_out;
 
     // EXE_MEM
     wire [31:0] EXE_MEM_inst_in;
@@ -347,21 +347,25 @@ module RV32iPCPU(
     // Out:
     //   None
     forwarding_unit _forwarding_unit_ (
+        // input from ID/EX
         .ID_EXE_read_reg1(ID_EXE_read_reg1),
         .ID_EXE_read_reg2(ID_EXE_read_reg2),
         .ID_EXE_ALU_A(ID_EXE_ALU_A),
         .ID_EXE_ALU_B(ID_EXE_ALU_B), 
-        
+        .ID_EXE_Data_out(ID_EXE_Data_out),
+        .ID_EXE_mem_w(ID_EXE_mem_w),
+        // input from EX/ME
         .EXE_MEM_RegWrite(EXE_MEM_RegWrite),
         .EXE_MEM_written_reg(EXE_MEM_written_reg),
         .EXE_MEM_ALU_out(EXE_MEM_ALU_out),
-        
+        // input from ME/WB
         .MEM_WB_RegWrite(MEM_WB_RegWrite),
         .MEM_WB_written_reg(Wt_addr),
         .MEM_WB_reg_Wt_data(Wt_data),
-        
+        // output
         .ALU_A_out(ALU_A_out),
-        .ALU_B_out(ALU_B_out)
+        .ALU_B_out(ALU_B_out),
+        .EXE_Data_out(EXE_Data_out)
     );
 
 
@@ -381,7 +385,7 @@ module RV32iPCPU(
         .PC(ID_EXE_PC),
         //// To MEM stage
         .ALU_out(ID_EXE_ALU_out),
-        .Data_out(ID_EXE_Data_out),
+        .Data_out(EXE_Data_out),
         .mem_w(ID_EXE_mem_w),
         //// To WB stage
         .DatatoReg(ID_EXE_DatatoReg),
