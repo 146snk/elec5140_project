@@ -34,6 +34,7 @@ module RV32iPCPU(
     wire V5;
     wire N0;
     wire [31:0] Imm_32;
+    wire [31:0] add_PC4_out;
     wire [31:0] add_branch_out;
     wire [31:0] add_jal_out;
     wire [31:0] add_jalr_out;
@@ -61,6 +62,11 @@ module RV32iPCPU(
     wire sign;              // WB // not used yet
 //    wire RegDst; // WB
 //    wire Jal; // WB
+
+    wire prediction;                // ID
+    wire [31:0] mispredict_PC;      // ID
+    wire taken;                     // EXE
+    wire misprediction;             // EXE
     
     // IF_ID
     wire [31:0] IF_ID_inst_in;
@@ -90,6 +96,10 @@ module RV32iPCPU(
     wire [31:0] ALU_A_out;
     wire [31:0] ALU_B_out;
     wire [31:0] EXE_Data_out;
+    
+    wire [31:0] ID_EXE_mispredict_PC;
+    wire [1:0] ID_EXE_branch;
+    wire ID_EXE_prediction;
 
     // EXE_MEM
     wire [31:0] EXE_MEM_inst_in;
@@ -139,10 +149,10 @@ module RV32iPCPU(
         .ID_EXE_dstall(ID_EXE_dstall)
         );
         
-    Control_Stall _cstall_ (
-        .Branch(Branch[1:0]),
-        .IF_ID_cstall(IF_ID_cstall)
-        );
+//    Control_Stall _cstall_ (
+//        .Branch(Branch[1:0]),
+//        .IF_ID_cstall(IF_ID_cstall)
+//        );
 
     assign ALU_out = EXE_MEM_ALU_out;
     assign data_out = EXE_MEM_Data_out;
@@ -168,6 +178,11 @@ module RV32iPCPU(
         .Q(PC_out[31:0]),
         .PC_dstall(PC_dstall)
         );
+    add_32 ADD_PC4(
+        .a(PC_out[31:0]),
+        .b(32'b0100),
+        .c(add_PC4_out[31:0])
+    );              
     add_32  ADD_Branch (
         .a(IF_ID_PC[31:0]),         // use the "PC" from ID stage
         .b(Imm_32[31:0]),           // From ID stage
@@ -184,15 +199,28 @@ module RV32iPCPU(
         .c(add_jalr_out[31:0])
         );
     Mux4to1b32  MUX5 (
-        .I0(PC_out[31:0] + 32'b0100),   // From IF stage
+        .I0(add_PC4_out[31:0]),   // From IF stage
         .I1(add_branch_out[31:0]),      // Containing "PC" from ID stage
         .I2(add_jal_out[31:0]),         // From ID stage
         .I3(add_jalr_out[31:0]),        // From ID stage
         .s(Branch[1:0]),                // From ID
-        .o(PC_wb[31:0])
+        .o(/*PC_wb[31:0]*/)
         );
-
-
+    flow_control _flow_control_(
+        .PC_out(PC_out),
+        .add_PC4(add_PC4_out),
+        .add_branch(add_branch_out),
+        .add_jal(add_jal_out),
+        .add_jalr(add_jalr_out),
+        .ID_EXE_mispredict_PC(ID_EXE_mispredict_PC),
+        .branch(Branch),
+        .misprediction(misprediction),
+        .prediction(prediction),
+        .next_PC(PC_wb),
+        .mispredict_PC(mispredict_PC),
+        .c_stall(IF_ID_cstall)
+    );
+    
     REG_IF_ID _if_id_ (
         .clk(clk), .rst(rst), .CE(V5),
         .IF_ID_dstall(IF_ID_dstall), .IF_ID_cstall(IF_ID_cstall),
@@ -239,7 +267,6 @@ module RV32iPCPU(
         .OPcode(IF_ID_inst_in[6:0]),
         .Fun1(IF_ID_inst_in[14:12]),
         .Fun2(IF_ID_inst_in[31:25]),
-        .zero(zero),
         // Output:
         .ALUSrc_A(ALUSrc_A),
         .ALUSrc_B(ALUSrc_B[1:0]),
@@ -280,8 +307,15 @@ module RV32iPCPU(
         .o(ALU_B[31:0]
         ));
     assign IF_ID_Data_out = rdata_B;
-    ID_Zero_Generator _id_zero_ (.A(ALU_A), .B(ALU_B), .ALU_operation(ALU_Control), .zero(zero));
-
+    
+    branch_predictor _predictor_ (
+        .IF_ID_PC(IF_ID_PC),
+        .prediction(prediction),
+        .ID_EXE_PC(ID_EXE_PC),
+        .taken(taken),
+        .ID_EXE_branch(ID_EXE_branch)
+    );
+    
     REG_ID_EXE _id_exe_ (
         .clk(clk), .rst(rst), .CE(V5), .ID_EXE_dstall(ID_EXE_dstall),
         // Input
@@ -302,6 +336,8 @@ module RV32iPCPU(
         .RegWrite(RegWrite),
         //// For Data Hazard
         .written_reg(IF_ID_written_reg), .read_reg1(IF_ID_read_reg1), .read_reg2(IF_ID_read_reg2),
+        //// To EXE stage, branch preidction
+        .mispredict_PC(mispredict_PC), .branch(Branch), .prediction(prediction),
         
         // Output
         .ID_EXE_inst_in(ID_EXE_inst_in),
@@ -314,7 +350,9 @@ module RV32iPCPU(
         .ID_EXE_DatatoReg(ID_EXE_DatatoReg),
         .ID_EXE_RegWrite(ID_EXE_RegWrite),
         //// For Data Hazard
-        .ID_EXE_written_reg(ID_EXE_written_reg), .ID_EXE_read_reg1(ID_EXE_read_reg1), .ID_EXE_read_reg2(ID_EXE_read_reg2)
+        .ID_EXE_written_reg(ID_EXE_written_reg), .ID_EXE_read_reg1(ID_EXE_read_reg1), .ID_EXE_read_reg2(ID_EXE_read_reg2),
+        //// For Branch prediction
+        .ID_EXE_mispredict_PC(ID_EXE_mispredict_PC), .ID_EXE_branch(ID_EXE_branch), .ID_EXE_prediction(ID_EXE_prediction)
         );
 
     // EXE:-------------------------------------------------------------------------------------------
@@ -375,8 +413,18 @@ module RV32iPCPU(
         .ALU_operation(ID_EXE_ALU_Control[4:0]),
         .res(ID_EXE_ALU_out[31:0]),
         .overflow(),
-        .zero()
+        .zero(zero)
         ); 
+
+    branch_verification _branch_verification_ (
+        .zero(zero),
+        .prediction(ID_EXE_prediction),
+        .branch(ID_EXE_branch),
+        .Fun1(ID_EXE_inst_in[14:12]),
+        
+        .taken(taken),
+        .misprediction(misprediction)
+    );
 
     REG_EXE_MEM _exe_mem_ (
         .clk(clk), .rst(rst), .CE(V5),

@@ -40,6 +40,10 @@ module REG_ID_EXE(
         input [4:0] read_reg1,
         input [4:0] read_reg2,
         
+        input [31:0] mispredict_PC,
+        input [1:0] branch,
+        input prediction,
+        
         output reg [31:0] ID_EXE_inst_in,
         output reg [31:0] ID_EXE_PC = 0,
         output reg [31:0] ID_EXE_ALU_A,
@@ -52,7 +56,11 @@ module REG_ID_EXE(
         
         output reg [4:0] ID_EXE_written_reg,
         output reg [4:0] ID_EXE_read_reg1,
-        output reg [4:0] ID_EXE_read_reg2
+        output reg [4:0] ID_EXE_read_reg2,
+        
+        output reg [31:0] ID_EXE_mispredict_PC,
+        output reg [1:0] ID_EXE_branch,
+        output reg ID_EXE_prediction
     );
 
     always @ (posedge clk or posedge rst) begin
@@ -70,6 +78,10 @@ module REG_ID_EXE(
             ID_EXE_written_reg  <= 5'b00000;
             ID_EXE_read_reg1    <= 5'b00000;
             ID_EXE_read_reg2    <= 5'b00000;
+            
+            ID_EXE_mispredict_PC <= 32'd0;
+            ID_EXE_branch <= 2'd0;
+            ID_EXE_prediction <= 1'b0;
         end
         else if (CE) begin
             ID_EXE_inst_in      <= inst_in;
@@ -85,6 +97,10 @@ module REG_ID_EXE(
             ID_EXE_written_reg  <= written_reg;
             ID_EXE_read_reg1    <= read_reg1;
             ID_EXE_read_reg2    <= read_reg2;
+            
+            ID_EXE_mispredict_PC <= mispredict_PC;
+            ID_EXE_branch <= branch;
+            ID_EXE_prediction <= prediction;
         end
     end   
 endmodule
