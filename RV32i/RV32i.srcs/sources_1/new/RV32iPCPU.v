@@ -124,6 +124,7 @@ module RV32iPCPU(
    // Stall
    wire PC_dstall;
    wire IF_ID_cstall;
+   wire ID_EXE_cstall;
    wire IF_ID_dstall;
    wire ID_EXE_dstall;
    
@@ -198,14 +199,6 @@ module RV32iPCPU(
         .b({{20{IF_ID_inst_in[31]}}, IF_ID_inst_in[31:20]}), 
         .c(add_jalr_out[31:0])
         );
-    Mux4to1b32  MUX5 (
-        .I0(add_PC4_out[31:0]),   // From IF stage
-        .I1(add_branch_out[31:0]),      // Containing "PC" from ID stage
-        .I2(add_jal_out[31:0]),         // From ID stage
-        .I3(add_jalr_out[31:0]),        // From ID stage
-        .s(Branch[1:0]),                // From ID
-        .o(/*PC_wb[31:0]*/)
-        );
     flow_control _flow_control_(
         .PC_out(PC_out),
         .add_PC4(add_PC4_out),
@@ -218,7 +211,8 @@ module RV32iPCPU(
         .prediction(prediction),
         .next_PC(PC_wb),
         .mispredict_PC(mispredict_PC),
-        .c_stall(IF_ID_cstall)
+        .IF_ID_cstall(IF_ID_cstall),
+		.ID_EXE_cstall(ID_EXE_cstall)
     );
     
     REG_IF_ID _if_id_ (
@@ -309,6 +303,7 @@ module RV32iPCPU(
     assign IF_ID_Data_out = rdata_B;
     
     branch_predictor _predictor_ (
+        .clk(clk), .rst(rst),
         .IF_ID_PC(IF_ID_PC),
         .prediction(prediction),
         .ID_EXE_PC(ID_EXE_PC),
@@ -317,7 +312,7 @@ module RV32iPCPU(
     );
     
     REG_ID_EXE _id_exe_ (
-        .clk(clk), .rst(rst), .CE(V5), .ID_EXE_dstall(ID_EXE_dstall),
+        .clk(clk), .rst(rst), .CE(V5), .ID_EXE_dstall(ID_EXE_dstall), .ID_EXE_cstall(ID_EXE_cstall),
         // Input
         .inst_in(IF_ID_inst_in),
         .PC(IF_ID_PC),

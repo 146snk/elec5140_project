@@ -12,7 +12,6 @@ Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.Data_Stall
 Compiling module xil_defaultlib.REG32
 Compiling module xil_defaultlib.add_32
-Compiling module xil_defaultlib.Mux4to1b32
 Compiling module xil_defaultlib.flow_control
 Compiling module xil_defaultlib.REG_IF_ID
 Compiling module xil_defaultlib.Get_rw_regs
@@ -20,6 +19,7 @@ Compiling module xil_defaultlib.Controler
 Compiling module xil_defaultlib.Regs
 Compiling module xil_defaultlib.SignExt
 Compiling module xil_defaultlib.Mux2to1b32
+Compiling module xil_defaultlib.Mux4to1b32
 Compiling module xil_defaultlib.branch_predictor
 Compiling module xil_defaultlib.REG_ID_EXE
 Compiling module xil_defaultlib.forwarding_unit

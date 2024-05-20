@@ -49,15 +49,5 @@ module Data_Stall(
             IF_ID_dstall = 1;
             ID_EXE_dstall = 1;
         end
-//        if (ID_EXE_written_reg != 0 && (ID_EXE_written_reg == IF_ID_read_reg1 || ID_EXE_written_reg == IF_ID_read_reg2)) begin
-//                PC_dstall = 1;
-//                IF_ID_dstall = 1;
-//                ID_EXE_dstall = 1;
-//        end
-//        else if (EXE_MEM_written_reg != 0 && (EXE_MEM_written_reg == IF_ID_read_reg1 || EXE_MEM_written_reg == IF_ID_read_reg2)) begin
-//                PC_dstall = 1;
-//                IF_ID_dstall = 1;
-//                ID_EXE_dstall = 1;
-//        end
     end
 endmodule

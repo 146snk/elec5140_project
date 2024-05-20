@@ -35,38 +35,43 @@ module flow_control(
     // output
     output reg[31:0] next_PC,
     output reg [31:0] mispredict_PC,
-    output reg c_stall
+    output reg IF_ID_cstall,
+	output reg ID_EXE_cstall
     );
     always @(*)begin
         if(misprediction == 1'b1)begin
             next_PC = ID_EXE_mispredict_PC;
-            c_stall = 1'b1;
+            IF_ID_cstall = 1'b1;
+			ID_EXE_cstall = 1'b1;
         end
-        else case(branch)
-            2'b00:begin
-                next_PC = add_PC4;
-                c_stall = 1'b0;
-            end
-            2'b01:begin
-                if(prediction == 0)begin
-                    next_PC = add_PC4;
-                    mispredict_PC = add_branch;
-                    c_stall = 1'b0;
-                end
-                else begin
-                    next_PC = add_branch;
-                    mispredict_PC = PC_out;
-                    c_stall = 1'b1;
-                end
-            end
-            2'b10:begin
-                next_PC = add_jal;
-                c_stall = 1'b1;
-            end
-            2'b11:begin
-                next_PC = add_jalr;
-                c_stall = 1'b1;
-            end   
-        endcase
+        else begin 
+			ID_EXE_cstall = 1'b0;
+			case(branch)
+				2'b00:begin
+					next_PC = add_PC4;
+					IF_ID_cstall = 1'b0;
+				end
+				2'b01:begin
+					if(prediction == 0)begin
+						next_PC = add_PC4;
+						mispredict_PC = add_branch;
+						IF_ID_cstall = 1'b0;
+					end
+					else begin
+						next_PC = add_branch;
+						mispredict_PC = PC_out;
+						IF_ID_cstall = 1'b1;
+					end
+				end
+				2'b10:begin
+					next_PC = add_jal;
+					IF_ID_cstall = 1'b1;
+				end
+				2'b11:begin
+					next_PC = add_jalr;
+					IF_ID_cstall = 1'b1;
+				end   
+			endcase
+		end
     end
 endmodule

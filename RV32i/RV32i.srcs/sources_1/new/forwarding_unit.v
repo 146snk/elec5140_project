@@ -41,6 +41,8 @@ module forwarding_unit(
     output reg [31:0] EXE_Data_out,
     output reg forwarding_flag_A,
     output reg forwarding_flag_B
+    
+//    ,output reg debug1
     );
     always @(*)begin
     // Default no forwarding    
@@ -49,12 +51,13 @@ module forwarding_unit(
         ALU_B_out = ID_EXE_ALU_B;
         EXE_Data_out = ID_EXE_Data_out;
         forwarding_flag_B = 0;
-        
+//        debug1 = 0;
     // ALU A forwarding
         // EXE_MEM -> ID_EXE
         if(EXE_MEM_RegWrite == 1 && ID_EXE_read_reg1 != 0 && ID_EXE_read_reg1 == EXE_MEM_written_reg) begin
             ALU_A_out = EXE_MEM_ALU_out;
             forwarding_flag_A = 1;
+//            debug1 = 1;
         end
         // MEM_WB -> ID_EXE    
         else if(MEM_WB_RegWrite == 1 && ID_EXE_read_reg1 != 0 && ID_EXE_read_reg1 == MEM_WB_written_reg) begin

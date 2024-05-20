@@ -21,6 +21,7 @@
 
 
 module branch_predictor(
+    input clk, input rst,
     input [31:0] IF_ID_PC,
     output prediction,
     input [31:0] ID_EXE_PC,
