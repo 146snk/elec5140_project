@@ -28,5 +28,12 @@ module branch_predictor(
     input taken,
     input [1:0] ID_EXE_branch
     );
-    assign prediction = 1'b1;
+	wire [1:0] counter;
+	reg counter_en;
+	assign prediction = counter[1];
+	always @(*) begin
+		if(ID_EXE_branch == 2'b01) counter_en = 1; 
+		else counter_en = 0;
+	end
+    saturating_counter_2bit _counter_ (.rst(rst), .clk(clk), .en(counter_en), .data_in(taken), .counter(counter));
 endmodule

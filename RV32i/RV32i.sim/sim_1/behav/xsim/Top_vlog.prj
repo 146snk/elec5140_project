@@ -20,6 +20,7 @@ verilog xil_defaultlib  \
 "../../../../RV32i.srcs/sources_1/new/branch_verification.v" \
 "../../../../RV32i.srcs/sources_1/new/flow_control.v" \
 "../../../../RV32i.srcs/sources_1/new/forwarding_unit.v" \
+"../../../../RV32i.srcs/sources_1/new/saturating_counter_2bit.v" \
 "../../../../RV32i.srcs/sim_1/new/Top.v" \
 
 # compile glbl module

@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="4 ps"></ZoomStartTime>
-      <ZoomEndTime time="19 ps"></ZoomEndTime>
-      <Cursor1Time time="9 ps"></Cursor1Time>
+      <ZoomStartTime time="1,060 ps"></ZoomStartTime>
+      <ZoomEndTime time="1,077 ps"></ZoomEndTime>
+      <Cursor1Time time="1,074 ps"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="361"></NameColumnWidth>
+      <NameColumnWidth column_width="352"></NameColumnWidth>
       <ValueColumnWidth column_width="132"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="12" />
    <wvobject fp_name="/Top/clk" type="logic">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -329,20 +329,87 @@
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_rw_regs_/inst_in" type="array">
-      <obj_property name="ElementShortName">inst_in[31:0]</obj_property>
-      <obj_property name="ObjectShortName">inst_in[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_rw_regs_/written_reg" type="array">
-      <obj_property name="ElementShortName">written_reg[4:0]</obj_property>
-      <obj_property name="ObjectShortName">written_reg[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_rw_regs_/read_reg1" type="array">
-      <obj_property name="ElementShortName">read_reg1[4:0]</obj_property>
-      <obj_property name="ObjectShortName">read_reg1[4:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Top/_rv32ipcpu_/_rw_regs_/read_reg2" type="array">
-      <obj_property name="ElementShortName">read_reg2[4:0]</obj_property>
-      <obj_property name="ObjectShortName">read_reg2[4:0]</obj_property>
+   <wvobject fp_name="group180" type="group">
+      <obj_property name="label">Branch prediction</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/IF_ID_PC" type="array">
+         <obj_property name="ElementShortName">IF_ID_PC[31:0]</obj_property>
+         <obj_property name="ObjectShortName">IF_ID_PC[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/prediction" type="logic">
+         <obj_property name="ElementShortName">prediction</obj_property>
+         <obj_property name="ObjectShortName">prediction</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/ID_EXE_PC" type="array">
+         <obj_property name="ElementShortName">ID_EXE_PC[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ID_EXE_PC[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/taken" type="logic">
+         <obj_property name="ElementShortName">taken</obj_property>
+         <obj_property name="ObjectShortName">taken</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/ID_EXE_branch" type="array">
+         <obj_property name="ElementShortName">ID_EXE_branch[1:0]</obj_property>
+         <obj_property name="ObjectShortName">ID_EXE_branch[1:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/counter" type="array">
+         <obj_property name="ElementShortName">counter[1:0]</obj_property>
+         <obj_property name="ObjectShortName">counter[1:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/counter_en" type="logic">
+         <obj_property name="ElementShortName">counter_en</obj_property>
+         <obj_property name="ObjectShortName">counter_en</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/zero" type="logic">
+         <obj_property name="ElementShortName">zero</obj_property>
+         <obj_property name="ObjectShortName">zero</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/prediction" type="logic">
+         <obj_property name="ElementShortName">prediction</obj_property>
+         <obj_property name="ObjectShortName">prediction</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/branch" type="array">
+         <obj_property name="ElementShortName">branch[1:0]</obj_property>
+         <obj_property name="ObjectShortName">branch[1:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/Fun1" type="array">
+         <obj_property name="ElementShortName">Fun1[2:0]</obj_property>
+         <obj_property name="ObjectShortName">Fun1[2:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/taken" type="logic">
+         <obj_property name="ElementShortName">taken</obj_property>
+         <obj_property name="ObjectShortName">taken</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/misprediction" type="logic">
+         <obj_property name="ElementShortName">misprediction</obj_property>
+         <obj_property name="ObjectShortName">misprediction</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>
