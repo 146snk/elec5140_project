@@ -3,7 +3,7 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 22.05.2024 11:51:11
+// Create Date: 22.05.2024 23:15:57
 // Design Name: 
 // Module Name: saturating_counter_2bit
 // Project Name: 
@@ -21,29 +21,24 @@
 
 
 module saturating_counter_2bit(
-    input rst,
-    input clk,
-    input en,
+    input [1:0] counter_in,
     input data_in,
-    output reg [1:0] counter
+    output reg [1:0] counter_out
     );
-	always @(posedge rst or negedge clk) begin
-		if(rst == 1) counter = 2'b00;
-		else if(en)begin
-			case(counter)
-				2'b00:
-					if(data_in == 0) counter <= 2'b00;
-					else counter <= 2'b01;
-				2'b01:
-					if(data_in == 0) counter <= 2'b00;
-					else counter <= 2'b10;
-				2'b10:
-					if(data_in == 0) counter <= 2'b01;
-					else counter <= 2'b11;
-				2'b11:
-					if(data_in == 0) counter <= 2'b10;
-					else counter <= 2'b11;						
-			endcase
-		end
+    always @(*) begin
+		case(counter_in)
+			2'b00: 
+				if(data_in == 0) counter_out<= 2'b00;
+				else counter_out <= 2'b01;
+			2'b01: 
+				if(data_in == 0) counter_out<= 2'b00;
+				else counter_out <= 2'b10;
+			2'b10: 
+				if(data_in == 0) counter_out<= 2'b01;
+				else counter_out <= 2'b11;
+			2'b11: 
+				if(data_in == 0) counter_out<= 2'b10;
+				else counter_out <= 2'b11;
+		endcase
 	end
 endmodule
