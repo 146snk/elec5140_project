@@ -28,19 +28,14 @@ module pattern_history_table
 	output read1_data_out,
 
     input [SIZE-1:0] read2_addr,
-    input [1:0] ID_EXE_branch,
+    input en,
     output [1:0] read2_data_out,
 	input [1:0] update
     );  
     reg [1:0] registers [2**SIZE-1:0];
-	reg en;
 	integer i;
 	
 	// assynchronous assignments
-	always @(*) begin
-		if(ID_EXE_branch == 2'b01) en=1;
-		else en=0;
-	end
 	assign read1_data_out = registers[read1_addr][1];
     assign read2_data_out = registers[read2_addr];
 	

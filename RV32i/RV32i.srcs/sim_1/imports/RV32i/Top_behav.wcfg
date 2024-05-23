@@ -11,12 +11,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1,060 ps"></ZoomStartTime>
-      <ZoomEndTime time="1,077 ps"></ZoomEndTime>
-      <Cursor1Time time="1,074 ps"></Cursor1Time>
+      <ZoomStartTime time="0 ps"></ZoomStartTime>
+      <ZoomEndTime time="30 ps"></ZoomEndTime>
+      <Cursor1Time time="8 ps"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="352"></NameColumnWidth>
+      <NameColumnWidth column_width="325"></NameColumnWidth>
       <ValueColumnWidth column_width="132"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="12" />
@@ -345,12 +345,6 @@
          <obj_property name="CustomSignalColor">#FF00FF</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
-      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/ID_EXE_PC" type="array">
-         <obj_property name="ElementShortName">ID_EXE_PC[31:0]</obj_property>
-         <obj_property name="ObjectShortName">ID_EXE_PC[31:0]</obj_property>
-         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
-         <obj_property name="UseCustomSignalColor">true</obj_property>
-      </wvobject>
       <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/taken" type="logic">
          <obj_property name="ElementShortName">taken</obj_property>
          <obj_property name="ObjectShortName">taken</obj_property>
@@ -360,18 +354,6 @@
       <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/ID_EXE_branch" type="array">
          <obj_property name="ElementShortName">ID_EXE_branch[1:0]</obj_property>
          <obj_property name="ObjectShortName">ID_EXE_branch[1:0]</obj_property>
-         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
-         <obj_property name="UseCustomSignalColor">true</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/counter" type="array">
-         <obj_property name="ElementShortName">counter[1:0]</obj_property>
-         <obj_property name="ObjectShortName">counter[1:0]</obj_property>
-         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
-         <obj_property name="UseCustomSignalColor">true</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/counter_en" type="logic">
-         <obj_property name="ElementShortName">counter_en</obj_property>
-         <obj_property name="ObjectShortName">counter_en</obj_property>
          <obj_property name="CustomSignalColor">#FF00FF</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
@@ -408,6 +390,186 @@
       <wvobject fp_name="/Top/_rv32ipcpu_/_branch_verification_/misprediction" type="logic">
          <obj_property name="ElementShortName">misprediction</obj_property>
          <obj_property name="ObjectShortName">misprediction</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers" type="array">
+         <obj_property name="ElementShortName">registers[15:0][1:0]</obj_property>
+         <obj_property name="ObjectShortName">registers[15:0][1:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[15]" type="array">
+            <obj_property name="ElementShortName">[15][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[15][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[14]" type="array">
+            <obj_property name="ElementShortName">[14][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[14][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[13]" type="array">
+            <obj_property name="ElementShortName">[13][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[13][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[12]" type="array">
+            <obj_property name="ElementShortName">[12][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[12][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[11]" type="array">
+            <obj_property name="ElementShortName">[11][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[11][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[10]" type="array">
+            <obj_property name="ElementShortName">[10][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[10][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[9]" type="array">
+            <obj_property name="ElementShortName">[9][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[9][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[8]" type="array">
+            <obj_property name="ElementShortName">[8][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[7]" type="array">
+            <obj_property name="ElementShortName">[7][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[6]" type="array">
+            <obj_property name="ElementShortName">[6][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[5]" type="array">
+            <obj_property name="ElementShortName">[5][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[4]" type="array">
+            <obj_property name="ElementShortName">[4][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[3]" type="array">
+            <obj_property name="ElementShortName">[3][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[2]" type="array">
+            <obj_property name="ElementShortName">[2][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[1]" type="array">
+            <obj_property name="ElementShortName">[1][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[0]" type="array">
+            <obj_property name="ElementShortName">[0][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][1:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[15]" type="array">
+            <obj_property name="ElementShortName">[15][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[15][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[14]" type="array">
+            <obj_property name="ElementShortName">[14][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[14][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[13]" type="array">
+            <obj_property name="ElementShortName">[13][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[13][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[12]" type="array">
+            <obj_property name="ElementShortName">[12][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[12][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[11]" type="array">
+            <obj_property name="ElementShortName">[11][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[11][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[10]" type="array">
+            <obj_property name="ElementShortName">[10][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[10][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[9]" type="array">
+            <obj_property name="ElementShortName">[9][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[9][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[8]" type="array">
+            <obj_property name="ElementShortName">[8][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[8][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[7]" type="array">
+            <obj_property name="ElementShortName">[7][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[7][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[6]" type="array">
+            <obj_property name="ElementShortName">[6][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[6][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[5]" type="array">
+            <obj_property name="ElementShortName">[5][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[5][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[4]" type="array">
+            <obj_property name="ElementShortName">[4][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[4][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[3]" type="array">
+            <obj_property name="ElementShortName">[3][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[3][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[2]" type="array">
+            <obj_property name="ElementShortName">[2][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[2][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[1]" type="array">
+            <obj_property name="ElementShortName">[1][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[1][1:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/_PHT_/registers[0]" type="array">
+            <obj_property name="ElementShortName">[0][1:0]</obj_property>
+            <obj_property name="ObjectShortName">[0][1:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_predictor_/BHR_out" type="array">
+         <obj_property name="ElementShortName">BHR_out[3:0]</obj_property>
+         <obj_property name="ObjectShortName">BHR_out[3:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Top/_rv32ipcpu_/_id_exe_/ID_EXE_BHR" type="array">
+         <obj_property name="ElementShortName">ID_EXE_BHR[3:0]</obj_property>
+         <obj_property name="ObjectShortName">ID_EXE_BHR[3:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
          <obj_property name="CustomSignalColor">#FF00FF</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
