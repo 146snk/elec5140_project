@@ -44,7 +44,7 @@ module REG_ID_EXE(
         input [31:0] mispredict_PC,
         input [1:0] branch,
         input prediction,
-        input [3:0] BHR_out,
+        input [31:0] prediction_update_addr,
         
         output reg [31:0] ID_EXE_inst_in,
         output reg [31:0] ID_EXE_PC = 0,
@@ -63,7 +63,7 @@ module REG_ID_EXE(
         output reg [31:0] ID_EXE_mispredict_PC,
         output reg [1:0] ID_EXE_branch,
         output reg ID_EXE_prediction,
-        output reg [3:0] ID_EXE_BHR
+        output reg [31:0] ID_EXE_prediction_update_addr
     );
 
     always @ (posedge clk or posedge rst) begin
@@ -85,7 +85,7 @@ module REG_ID_EXE(
             ID_EXE_mispredict_PC <= 32'd0;
             ID_EXE_branch <= 2'd0;
             ID_EXE_prediction <= 1'b0;
-            ID_EXE_BHR <= 4'b0000;
+            ID_EXE_prediction_update_addr <= 32'd0;
         end
         else if (CE) begin
             ID_EXE_inst_in      <= inst_in;
@@ -105,7 +105,7 @@ module REG_ID_EXE(
             ID_EXE_mispredict_PC <= mispredict_PC;
             ID_EXE_branch <= branch;
             ID_EXE_prediction <= prediction;
-            ID_EXE_BHR <= BHR_out;
+            ID_EXE_prediction_update_addr <= prediction_update_addr;
         end
     end   
 endmodule

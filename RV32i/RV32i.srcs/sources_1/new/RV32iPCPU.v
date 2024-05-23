@@ -65,7 +65,7 @@ module RV32iPCPU(
 
     wire prediction;                // ID
     wire [31:0] mispredict_PC;      // ID
-    wire [3:0] BHR_out;
+    wire [31:0] prediction_update_addr;
     wire taken;                     // EXE
     wire misprediction;             // EXE
     
@@ -101,7 +101,7 @@ module RV32iPCPU(
     wire [31:0] ID_EXE_mispredict_PC;
     wire [1:0] ID_EXE_branch;
     wire ID_EXE_prediction;
-    wire [3:0] ID_EXE_BHR;
+    wire [31:0] ID_EXE_prediction_update_addr;
 
     // EXE_MEM
     wire [31:0] EXE_MEM_inst_in;
@@ -309,9 +309,9 @@ module RV32iPCPU(
         
         .IF_ID_PC(IF_ID_PC),
         .prediction(prediction),
-        .BHR_out(BHR_out),
+        .prediction_update_addr(prediction_update_addr),
         
-        .ID_EXE_BHR(ID_EXE_BHR),
+        .ID_EXE_prediction_update_addr(ID_EXE_prediction_update_addr),
         .taken(taken),
         .ID_EXE_branch(ID_EXE_branch)
     );
@@ -337,7 +337,7 @@ module RV32iPCPU(
         //// For Data Hazard
         .written_reg(IF_ID_written_reg), .read_reg1(IF_ID_read_reg1), .read_reg2(IF_ID_read_reg2),
         //// To EXE stage, branch preidction
-        .mispredict_PC(mispredict_PC), .branch(Branch), .prediction(prediction), .BHR_out(BHR_out),
+        .mispredict_PC(mispredict_PC), .branch(Branch), .prediction(prediction), .prediction_update_addr(prediction_update_addr),
         
         // Output
         .ID_EXE_inst_in(ID_EXE_inst_in),
@@ -353,7 +353,7 @@ module RV32iPCPU(
         .ID_EXE_written_reg(ID_EXE_written_reg), .ID_EXE_read_reg1(ID_EXE_read_reg1), .ID_EXE_read_reg2(ID_EXE_read_reg2),
         //// For Branch prediction
         .ID_EXE_mispredict_PC(ID_EXE_mispredict_PC), .ID_EXE_branch(ID_EXE_branch), .ID_EXE_prediction(ID_EXE_prediction),
-        .ID_EXE_BHR(ID_EXE_BHR)
+        .ID_EXE_prediction_update_addr(ID_EXE_prediction_update_addr)
         );
 
     // EXE:-------------------------------------------------------------------------------------------
